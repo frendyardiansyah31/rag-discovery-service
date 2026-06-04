@@ -1,8 +1,12 @@
 fastapi
 uvicorn[standard]
 sentence-transformers
-elasticsearch[async]
+opensearch-py[async]
 openai
 python-dotenv
 sickle
+pymupdf
+celery[redis]
+redis
+requests
 torch --index-url https://download.pytorch.org/whl/cpu

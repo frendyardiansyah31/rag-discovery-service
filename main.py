@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-from retriever import es, retrieve
+from rag_query import es, retrieve_extended
 from llm import generate_answer
 
 
@@ -34,11 +34,15 @@ async def rag_query(req: QueryRequest):
         raise HTTPException(status_code=400, detail="query required")
 
     t0 = time.time()
-    sources = await retrieve(query, top_k=req.top_k)
-    answer = await generate_answer(query, sources)
+    context, sources, notes = await retrieve_extended(query, top_k=req.top_k)
+    answer = await generate_answer(query, sources, context=context)
 
-    return {
+    response = {
         "answer": answer,
         "sources": sources,
         "query_time_ms": int((time.time() - t0) * 1000),
     }
+    if notes:
+        response["notes"] = notes
+
+    return response
