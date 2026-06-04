@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Environment variables
+.env
+
+# Data files
+dspace_sample.json
+*.json
+!*.example.json
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-internal docs
+INTEGRATION_PROMPT.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# PyTorch / HuggingFace model cache
+.cache/
